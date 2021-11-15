@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2021 at 10:34 AM
+-- Generation Time: Nov 15, 2021 at 05:48 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.24
 
@@ -125,8 +125,10 @@ CREATE TABLE `produk` (
 --
 
 INSERT INTO `produk` (`id_produk`, `nama_produk`, `harga_produk`, `berat_produk`, `foto_produk`, `deskripsi_produk`) VALUES
-(6, 'hijab coklat', 15, 1002, '1626541933263.jpg', 'warna warni   '),
-(7, 'hijab merah', 12000, 100, 'about.png', 'jangan di beli');
+(6, 'Pansy Square', 25, 100, 'product_01.png', 'Bahan voal premium, laser cutting, motif printing detail premium dan tidak terawang'),
+(7, 'Ammi Square', 25, 100, 'product_02.png', 'Bahan voal premium, laser cutting, motif printing detail premium dan tidak terawang'),
+(8, 'Line Square', 25, 100, 'hijab4.png', 'Bahan voal premium, laser cutting, motif printing detail premium dan tidak terawang'),
+(9, 'Iris Square', 25, 100, 'hijab3.png', 'Bahan voal premium, laser cutting, motif printing detail premium dan tidak terawang');
 
 --
 -- Indexes for dumped tables
@@ -194,7 +196,7 @@ ALTER TABLE `pembelian_produk`
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id_produk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_produk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
