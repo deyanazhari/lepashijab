@@ -64,13 +64,13 @@ $koneksi = new mysqli ("localhost","root","","lepashijab");
                             <a class="nav-link" href="produk.php">Produk</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="about.html">Keranjang</a>
+                            <a class="nav-link" href="keranjang.php">Keranjang</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="login.php">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="checkout">Checkout</a>
+                            <a class="nav-link" href="checkout.php">Checkout</a>
                         </li>
                     </ul>
                 </div>
