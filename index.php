@@ -97,7 +97,7 @@ $koneksi = new mysqli ("localhost","root","","lepashijab");
             </div>
             <div class="banner-item-03">
                 <div class="text-content">
-                    <h4>Last Minute</h4>
+                    <h4></h4>
                     <h2></h2>
                 </div>
             </div>
