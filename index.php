@@ -98,7 +98,7 @@ $koneksi = new mysqli ("localhost","root","","lepashijab");
             <div class="banner-item-03" style="background-image: url(assets/images/header3.png);">
                 <div class="text-content">
                     <h4>Ayoo beli</h4>
-                    <h2> banyak diskon</h2>
+                    <h2> banyak disko</h2>
                 </div>
             </div>
         </div>
