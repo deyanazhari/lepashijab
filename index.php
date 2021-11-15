@@ -95,10 +95,10 @@ $koneksi = new mysqli ("localhost","root","","lepashijab");
                     </h2>
                 </div>
             </div>
-            <div class="banner-item-03">
+            <div class="banner-item-03" style="background-image: url(assets/images/header3.png);">
                 <div class="text-content">
-                    <h4halooh4>
-                        <h2></h2>
+                    <h4></h4>
+                    <h2></h2>
                 </div>
             </div>
         </div>
