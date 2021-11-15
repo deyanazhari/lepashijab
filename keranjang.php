@@ -32,14 +32,14 @@ $koneksi = new mysqli ("localhost","root","","lepashijab");
 
 <body>
 
-    <!-- ***** Preloader Start ***** -->
+    <!-- ***** Preloader Start ***** 
     <div id="preloader">
         <div class="jumper">
             <div></div>
             <div></div>
             <div></div>
         </div>
-    </div>
+    </div> -->
     <!-- ***** Preloader End ***** -->
 
     <!-- Header -->
@@ -62,10 +62,10 @@ $koneksi = new mysqli ("localhost","root","","lepashijab");
                     <li class="nav-item">
                         <a class="nav-link" href="produk.php">Produk</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link" href="keranjang.php">Keranjang</a>
                     </li>
-                    <li class="nav-item active">
+                    <li class="nav-item ">
                         <a class="nav-link" href="login.php">Login</a>
                     </li>
                     <li class="nav-item ">
