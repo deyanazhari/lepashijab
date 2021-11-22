@@ -1,14 +1,5 @@
-<?php
-session_start();
-//koneksi database
-$koneksi = new mysqli ("localhost","root","","lepashijab");
+<?php $koneksi = new mysqli ("localhost","root","","lepashijab"); ?>
 
-if(empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"]))
-{
-    echo "<script>alert('Keranjang kosong, Silahkan belanja')</script>";
-    echo "<script>location='index.php'</script>";
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,7 +15,7 @@ if(empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"]))
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet">
     <link href="./assets/font-awesome/css/all.min.css?ver=1.2.0" rel="stylesheet">
 
-    <title>Keranjang Belanja</title>
+    <title>Lepas Hijab</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -38,17 +29,6 @@ if(empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"]))
 </head>
 
 <body>
-
-    <!-- ***** Preloader Start ***** 
-    <div id="preloader">
-        <div class="jumper">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </div> -->
-    <!-- ***** Preloader End ***** -->
-
     <!-- Header -->
     <nav class="navbar navbar-expand-lg" style="background-color: black;">
         <div class="container">
@@ -69,10 +49,10 @@ if(empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"]))
                     <li class="nav-item">
                         <a class="nav-link" href="produk.php">Produk</a>
                     </li>
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="keranjang.php">Keranjang</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link" href="checkout.php">Checkout</a>
                     </li>
                     <!-- Jika sudah login -->
@@ -90,52 +70,82 @@ if(empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"]))
             </div>
         </div>
     </nav>
+
     <section class="konten">
         <div class="container">
-            <h3>Keranjang Belanja</h3>
-            <hr>
+
+
+            <!-- Nota -->
+            <h2>Detail Pembelian</h2>
+            <?php 
+$ambil = $koneksi->query("SELECT * FROM pembelian JOIN pelanggan ON pembelian.id_pelanggan=pelanggan.id_pelanggan WHERE pembelian.id_pembelian='$_GET[id]'");
+$detail = $ambil -> fetch_assoc();
+?>
+            <div class="row" style="background-color:#007c65; color: #ffffff;">
+                <div class="col-md-4">
+                    <h4>Pembelian</h4>
+                    <strong>No. Pembelian: <?php echo $detail['id_pembelian']; ?></strong> <br>
+                    Tanggal: <?php echo $detail ['tanggal_pembelian']; ?> <br>
+                    Total: Rp. <?php echo number_format($detail ['total_pembelian']); ?> <br>
+                </div>
+                <div class="col-md-4">
+                    <h4>Pelanggan</h4>
+                    <strong> <?php echo $detail['nama_pelanggan']; ?></strong> <br>
+
+                    <?php echo $detail ['telepon_pelanggan']; ?> <br>
+                    <?php echo $detail ['email_pelanggan']; ?> <br>
+
+                </div>
+                <div class="col-md-4">
+                    <h4>Pengiriman</h4>
+                    <strong> <?php echo $detail['nama_kota']; ?></strong> <br>
+                    Ongkos Kirim: Rp. <?php echo number_format( $detail['tarif']);?> <br>
+                    Alamat: <?php echo $detail['alamat_pengiriman']; ?>
+                </div>
+            </div>
+
             <table class="styled-table">
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>produk</th>
+                        <th>Nama Produk</th>
                         <th>Harga</th>
+                        <th>Berat</th>
                         <th>Jumlah</th>
+                        <th>Subberat</th>
                         <th>Total</th>
-                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php $nomor=1; ?>
-                    <?php foreach ($_SESSION["keranjang"] as $id_produk => $jumlah): ?>
-                    <!-- menampilkan produk yang sedang diperulangkan berdasarkan id_produk -->
-                    <?php
-                    $ambil = $koneksi->query ("SELECT * FROM produk WHERE id_produk='$id_produk'");
-                    $pecah = $ambil->fetch_assoc();
-                    $subharga = $pecah["harga_produk"]*$jumlah;
-                    ?>
-
+                    <?php $ambil = $koneksi->query("SELECT * FROM pembelian_produk WHERE id_pembelian='$_GET[id]'"); ?>
+                    <?php while ($pecah=$ambil->fetch_assoc()){ ?>
                     <tr class="active-row">
                         <td><?php echo $nomor; ?></td>
-                        <td><?php echo $pecah["nama_produk"]; ?></td>
-                        <td>Rp. <?php echo number_format($pecah["harga_produk"]); ?></td>
-                        <td><?php echo $jumlah; ?></td>
-                        <td>Rp. <?php echo number_format($subharga);?></td>
-                        <td>
-                            <a href="hapuskeranjang.php?id=<?php echo $id_produk ?>"
-                                class="btn btn-danger btn-sm">Hapus</a>
-                        </td>
+                        <td> <?php echo $pecah ['nama']; ?></td>
+                        <td>Rp. <?php echo number_format($pecah ['harga']); ?></td>
+                        <td> <?php echo $pecah ['berat']; ?>(gr)</td>
+                        <td><?php echo $pecah ['jumlah']; ?>(pcs)</td>
+                        <td> <?php echo $pecah ['subberat']; ?>(gr)</td>
+                        <td>Rp. <?php echo number_format($pecah ['subharga']); ?></td>
                     </tr>
                     <?php $nomor++; ?>
-                    <?php endforeach ?>
+                    <?php } ?>
                 </tbody>
             </table>
-            <a href="produk.php" class="btn btn-light">Lanjutkan Belanja</a>
-            <a href="checkout.php" class="btn btn-primary">checkout</a>
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="alert alert-info">
+                        <p>
+                            Silahkan melakukan pembayaran Rp. <?php echo number_format($detail['total_pembelian']); ?>
+                            Ke <br>
+                            <strong>Bank Mandiri 137-001088-3276 AN.Lepas Hijab</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
-
     </section>
-
 </body>
 
 </html>

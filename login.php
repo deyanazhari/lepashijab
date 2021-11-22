@@ -69,7 +69,7 @@ $koneksi = new mysqli ("localhost","root","","lepashijab");
             $akun = $ambil->fetch_assoc();
             $_SESSION["pelanggan"]= $akun;
             echo "<script>alert('anda sukses login');</script>";
-            echo "<script>location='checkout.php';</script>";
+            echo "<script>location='index.php';</script>";
 
         }
         else
