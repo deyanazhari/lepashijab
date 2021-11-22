@@ -1,11 +1,16 @@
 <?php
 session_start();
-
 echo "<pre>";
 print_r($_SESSION['keranjang']);
 echo "</pre>";
 //koneksi database
 $koneksi = new mysqli ("localhost","root","","lepashijab");
+
+if(empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"]))
+{
+    echo "<script>alert('Keranjang kosong, Silahkan belanja')</script>";
+    echo "<script>location='index.php'</script>";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -100,6 +105,7 @@ $koneksi = new mysqli ("localhost","root","","lepashijab");
                         <th>Harga</th>
                         <th>Jumlah</th>
                         <th>Total</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -121,6 +127,10 @@ $koneksi = new mysqli ("localhost","root","","lepashijab");
                         <td>Rp. <?php echo number_format($pecah["harga_produk"]); ?></td>
                         <td><?php echo $jumlah; ?></td>
                         <td>Rp. <?php echo number_format($subharga);?></td>
+                        <td>
+                            <a href="hapuskeranjang.php?id=<?php echo $id_produk ?>"
+                                class="btn btn-danger btn-sm">Hapus</a>
+                        </td>
                     </tr>
                     <?php $nomor++; ?>
                     <?php endforeach ?>
