@@ -110,13 +110,7 @@ $koneksi = new mysqli ("localhost","root","","lepashijab");
                             </a>
                             <h6><?php echo $perproduk['harga_produk']; ?></h6>
                             <p><?php echo $perproduk['deskripsi_produk']; ?></p>
-                            <ul class="stars">
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                            </ul>
+                            <a href="beli.php?id=<?php echo $perproduk['id_produk'];?>" class="btn btn-primary">Beli</a>
                         </div>
                     </div>
                 </div>

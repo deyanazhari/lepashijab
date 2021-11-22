@@ -1,5 +1,9 @@
 <?php
 session_start();
+
+echo "<pre>";
+print_r($_SESSION['keranjang']);
+echo "</pre>";
 //koneksi database
 $koneksi = new mysqli ("localhost","root","","lepashijab");
 ?>
@@ -18,7 +22,7 @@ $koneksi = new mysqli ("localhost","root","","lepashijab");
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet">
     <link href="./assets/font-awesome/css/all.min.css?ver=1.2.0" rel="stylesheet">
 
-    <title>Lepas Hijab</title>
+    <title>Keranjang Belanja</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -75,8 +79,50 @@ $koneksi = new mysqli ("localhost","root","","lepashijab");
             </div>
         </div>
     </nav>
-    <div class="container">
-        <h3>Halaman Keranjang</h3>
-    </div>
+    <section class="konten">
+        <div class="container">
+            <h3>Keranjang Belanja</h3>
+            <hr>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>produk</th>
+                        <th>Harga</th>
+                        <th>Jumlah</th>
+                        <th>SubHarga</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php $nomor=1; ?>
+                    <?php foreach ($_SESSION["keranjang"] as $id_produk => $jumlah): ?>
+                    <!-- menampilkan produk yang sedang diperulangkan berdasarkan id_produk -->
+                    <?php
+                    $ambil = $koneksi->query ("SELECT * FROM produk WHERE id_produk='$id_produk'");
+                    $pecah = $ambil->fetch_assoc();
+                    $subharga = $pecah["harga_produk"]*$jumlah;
+                    echo "<pre>";
+                    print_r($pecah);
+                    echo "</pre>";
+                    ?>
+
+                    <tr>
+                        <td><?php echo $nomor; ?></td>
+                        <td><?php echo $pecah["nama_produk"]; ?></td>
+                        <td>Rp. <?php echo number_format($pecah["harga_produk"]); ?></td>
+                        <td><?php echo $jumlah; ?></td>
+                        <td>Rp. <?php echo number_format($subharga);?></td>
+                    </tr>
+                    <?php $nomor++; ?>
+                    <?php endforeach ?>
+                </tbody>
+            </table>
+            <a href="produk.php" class="btn btn-light">Lanjutkan Belanja</a>
+            <a href="checkout.php" class="btn btn-primary">checkout</a>
+        </div>
+
+        </sectionc>
+
+</body>
 
 </html>

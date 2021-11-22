@@ -122,7 +122,7 @@ $koneksi = new mysqli ("localhost","root","","lepashijab");
                                 <h4>
                                     <?php echo $perproduk['nama_produk']; ?></h4>
                             </a>
-                            <h6><?php echo $perproduk['harga_produk']; ?></h6>
+                            <h6>Rp. <?php echo  number_format($perproduk["harga_produk"]); ?></h6>
                             <p><?php echo $perproduk['deskripsi_produk']; ?></p>
                         </div>
                     </div>
