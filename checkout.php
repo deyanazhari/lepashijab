@@ -2,6 +2,11 @@
 session_start();
 //koneksi database
 $koneksi = new mysqli ("localhost","root","","lepashijab");
+
+if (!isset($_SESSION["pelanggan"])){
+    echo "<script>alert('silahkan login');</script>";
+    echo "<script>location='login.php';</script>";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,9 +70,17 @@ $koneksi = new mysqli ("localhost","root","","lepashijab");
                     <li class="nav-item">
                         <a class="nav-link" href="keranjang.php">Keranjang</a>
                     </li>
+                    <!-- Jika sudah login -->
+                    <?php if (isset ($_SESSION["pelanggan"])): ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.php">Logout</a>
+                    </li>
+                    <!--jika belum login -->
+                    <?php else: ?>
                     <li class="nav-item">
                         <a class="nav-link" href="login.php">Login</a>
                     </li>
+                    <?php endif ?>
                     <li class="nav-item active">
                         <a class="nav-link" href="checkout.php">Checkout</a>
                     </li>
@@ -78,5 +91,8 @@ $koneksi = new mysqli ("localhost","root","","lepashijab");
     <div class="container">
         <h3>Halaman Checkout</h3>
     </div>
+    <pre>"
+     <?php print_r($_SESSION["pelanggan"]); ?>
+    </pre>"
 
 </html>

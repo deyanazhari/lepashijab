@@ -31,6 +31,7 @@ $koneksi = new mysqli ("localhost","root","","lepashijab");
     <link rel="stylesheet" href="assets/css/fontawesome.css">
     <link rel="stylesheet" href="assets/css/templatemo-sixteen.css">
     <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet" href="assets/css/table.css">
 
 </head>
 
@@ -69,12 +70,20 @@ $koneksi = new mysqli ("localhost","root","","lepashijab");
                     <li class="nav-item active">
                         <a class="nav-link" href="keranjang.php">Keranjang</a>
                     </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="login.php">Login</a>
-                    </li>
-                    <li class="nav-item ">
+                    <li class="nav-item">
                         <a class="nav-link" href="checkout.php">Checkout</a>
                     </li>
+                    <!-- Jika sudah login -->
+                    <?php if (isset ($_SESSION["pelanggan"])): ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.php">Logout</a>
+                    </li>
+                    <!--jika belum login -->
+                    <?php else: ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.php">Login</a>
+                    </li>
+                    <?php endif ?>
                 </ul>
             </div>
         </div>
@@ -83,14 +92,14 @@ $koneksi = new mysqli ("localhost","root","","lepashijab");
         <div class="container">
             <h3>Keranjang Belanja</h3>
             <hr>
-            <table class="table table-bordered">
+            <table class="styled-table">
                 <thead>
                     <tr>
                         <th>No</th>
                         <th>produk</th>
                         <th>Harga</th>
                         <th>Jumlah</th>
-                        <th>SubHarga</th>
+                        <th>Total</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -106,7 +115,7 @@ $koneksi = new mysqli ("localhost","root","","lepashijab");
                     echo "</pre>";
                     ?>
 
-                    <tr>
+                    <tr class="active-row">
                         <td><?php echo $nomor; ?></td>
                         <td><?php echo $pecah["nama_produk"]; ?></td>
                         <td>Rp. <?php echo number_format($pecah["harga_produk"]); ?></td>

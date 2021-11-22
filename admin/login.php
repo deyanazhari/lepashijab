@@ -47,7 +47,7 @@ $koneksi = new mysqli ("localhost","root","","lepashijab");
                             </div>
                             <div class="form-group input-group">
                                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                                <input type="text" class="form-control" name="pass" />
+                                <input type="password" class="form-control" name="pass" />
                             </div>
                             <div class="form-group">
                                 <label class="checkbox-inline">
