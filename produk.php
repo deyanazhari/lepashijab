@@ -1,7 +1,7 @@
 <?php
 session_start();
 //koneksi database
-$koneksi = new mysqli ("localhost","root","","lepashijab");
+include 'config.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -121,6 +121,8 @@ $koneksi = new mysqli ("localhost","root","","lepashijab");
                             <h6><?php echo $perproduk['harga_produk']; ?></h6>
                             <p><?php echo $perproduk['deskripsi_produk']; ?></p>
                             <a href="beli.php?id=<?php echo $perproduk['id_produk'];?>" class="btn btn-primary">Beli</a>
+                            <a href="detail.php?id=<?php echo $perproduk["id_produk"] ;?>"
+                                class="btn btn-outline-dark">Detail</a>
                         </div>
                     </div>
                 </div>

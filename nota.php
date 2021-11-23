@@ -1,4 +1,6 @@
-<?php $koneksi = new mysqli ("localhost","root","","lepashijab"); ?>
+<?php 
+include 'config.php';
+?>
 
 <!DOCTYPE html>
 <html lang="en">

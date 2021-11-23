@@ -1,7 +1,7 @@
 <?php
 session_start();
 //koneksi database
-$koneksi = new mysqli ("localhost","root","","lepashijab");
+include 'config.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

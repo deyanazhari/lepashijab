@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$koneksi = new mysqli ("localhost","root","","lepashijab");
+include 'config.php';
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
