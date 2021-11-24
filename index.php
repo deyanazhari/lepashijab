@@ -17,6 +17,9 @@ $koneksi = new mysqli ("localhost","root","","lepashijab");
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet">
     <link href="./assets/font-awesome/css/all.min.css?ver=1.2.0" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Gidugu&family=Nunito:wght@700;800&family=Oswald&family=Outfit&family=Roboto&family=Roboto+Condensed&family=Spectral:wght@500&display=swap"
+        rel="stylesheet">
 
     <title>Lepas Hijab</title>
 
@@ -27,6 +30,7 @@ $koneksi = new mysqli ("localhost","root","","lepashijab");
     <link rel="stylesheet" href="assets/css/fontawesome.css">
     <link rel="stylesheet" href="assets/css/templatemo-sixteen.css">
     <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet" href="assets/css/table.css">
 
 </head>
 
@@ -43,7 +47,7 @@ $koneksi = new mysqli ("localhost","root","","lepashijab");
     <!-- ***** Preloader End ***** -->
 
     <!-- Header -->
-    <header class="">
+    <header class="" style="background-color: #3f5a5e;">
         <nav class="navbar navbar-expand-lg">
             <div class="container">
                 <a class="navbar-brand" href="index.php">
@@ -91,13 +95,13 @@ $koneksi = new mysqli ("localhost","root","","lepashijab");
     <!-- Banner Starts Here -->
     <div class="banner header-text">
         <div class="owl-banner owl-carousel">
-            <div class="banner-item-01" style="background-image: url(assets/images/bg1.png);">
+            <div class="banner-item-01 blur" style="background-image: url(assets/images/bg1.jpg);">
                 <div class="text-content">
                     <h4 style="text-shadow: 1px 1px 0px white;">Lepas Hijab</h4>
                     <h2 style="font-size:40px;">Lepaskan Cantikmu Dengan Hijab</h2>
                 </div>
             </div>
-            <div class="banner-item-02" style="background-image: url(assets/images/bg2.png);">
+            <div class="banner-item-02 blur" style="background-image: url(assets/images/bg2.png);">
                 <div class="text-content">
                     <h4></h4>
                     <h2 style="font-size: 30px;">Dapatkan Produk Dengan Harga Terbaik
@@ -117,7 +121,8 @@ $koneksi = new mysqli ("localhost","root","","lepashijab");
     <div class="latest-products">
         <div class="container">
             <div class="section-heading">
-                <h2>Latest Products</h2>
+                <h2 style="font-size: 20px; font-family: 'Nunito', sans-serif;font-weight:700; color:#3f5a5e;">Latest
+                    Produk</h2>
                 <a href="products.html">Lihat semua <i class="fa fa-angle-right"></i></a>
             </div>
             <div class="row">
@@ -128,10 +133,11 @@ $koneksi = new mysqli ("localhost","root","","lepashijab");
                         <a href="produk.php"><img src="foto_produk/<?php echo $perproduk['foto_produk']; ?>" alt=""></a>
                         <div class="down-content">
                             <a href="#">
-                                <h4>
+                                <h4 style="color:#3f5a5e;">
                                     <?php echo $perproduk['nama_produk']; ?></h4>
                             </a>
-                            <h6>Rp. <?php echo  number_format($perproduk["harga_produk"]); ?></h6>
+                            <h6 style="font-family: 'Nunito', sans-serif;font-weight:800; font-size:15px">Rp.
+                                <?php echo  number_format($perproduk["harga_produk"]); ?></h6>
                             <p><?php echo $perproduk['deskripsi_produk']; ?></p>
                         </div>
                     </div>
@@ -148,17 +154,21 @@ $koneksi = new mysqli ("localhost","root","","lepashijab");
             <div class="row">
                 <div class="col-md-12">
                     <div class="section-heading">
-                        <h2>Tentang Lepas Hijab</h2>
+                        <h2 style="font-family: 'Nunito', sans-serif;font-weight:700;">Tentang Lepas Hijab</h2>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class=" col-md-6">
                     <div class="left-content">
-                        <h4>Apa itu Lepas Hijab?</h4>
+                        <h4 style="color:#3f5a5e;">Apa itu Lepas Hijab?</h4>
                         <p><a rel="nofollow" href="https://templatemo.com/tm-546-sixteen-clothing"
-                                target="_parent">Lepas Hijab </a>merupakan salahsatu brand yang memperkuat fashion hijab
-                            Tanah Air sejak tahun 2020. Lepas Hijab hadir dengan koleksi bergaris feminin yang mengusung
-                            gaya untuk semua tipe kepribadian perempuan Indonesia. Mereka yang trendi dengan gaya muda
-                            ceria, klasik maupun eksklusif, dan selalu tampil beda di setiap kesempatan, akan semakin
+                                target="_parent">Lepas Hijab </a>merupakan salahsatu brand yang memperkuat
+                            fashion hijab
+                            Tanah Air sejak tahun 2020. Lepas Hijab hadir dengan koleksi bergaris feminin yang
+                            mengusung
+                            gaya untuk semua tipe kepribadian perempuan Indonesia. Mereka yang trendi dengan
+                            gaya muda
+                            ceria, klasik maupun eksklusif, dan selalu tampil beda di setiap kesempatan, akan
+                            semakin
                             percaya diri dengan koleksi Lepas Hijab.<a rel="nofollow"
                                 href="https://templatemo.com/contact">Contact us</a> for more info.</p>
                         <ul class="featured-list">
@@ -168,7 +178,7 @@ $koneksi = new mysqli ("localhost","root","","lepashijab");
                             <li><a href="#">Corporis, omnis doloremque</a></li>
                             <li><a href="#">Non cum id reprehenderit</a></li>
                         </ul>
-                        <a href="about.html" class="filled-button">Read More</a>
+                        <a href="about.html" class="filled-button" style="background-color: #f33f3f;">Read More</a>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -183,7 +193,8 @@ $koneksi = new mysqli ("localhost","root","","lepashijab");
     <footer class="pt-4 pb-4 text-center bg-light">
         <div class="container">
             <div class="my-3">
-                <div class="h4">Lepas Hijab</div>
+                <div style="font-family: 'Nunito', sans-serif;font-size:27px;font-weight:800;color:#3f5a5e;">LEPAS HIJAB
+                </div>
                 <p>Belanja & retail</p>
                 <div class="social-nav">
                     <nav role="navigation">

@@ -50,7 +50,7 @@ if(empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"]))
     <!-- ***** Preloader End ***** -->
 
     <!-- Header -->
-    <nav class="navbar navbar-expand-lg" style="background-color: black;">
+    <nav class="navbar navbar-expand-lg" style="background-color: #3f5a5e;">
         <div class="container">
             <a class="navbar-brand" href="index.php">
                 <h2>Lepas <em style="color:#FF6366">Hijab</em></h2>
@@ -92,7 +92,8 @@ if(empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"]))
     </nav>
     <section class="konten">
         <div class="container">
-            <h3>Keranjang Belanja</h3>
+            <h3 style="font-family: 'Nunito', sans-serif;font-weight:700; color:#3f5a5e;font-size:25px;">Keranjang
+                Belanja</h3>
             <hr>
             <table class="styled-table">
                 <thead>

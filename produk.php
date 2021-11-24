@@ -15,6 +15,10 @@ include 'config.php';
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
         rel="stylesheet">
     <link href="./assets/font-awesome/css/all.min.css?ver=1.2.0" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Gidugu&family=Nunito:wght@700;800&family=Oswald&family=Outfit&family=Roboto&family=Roboto+Condensed&family=Spectral:wght@500&display=swap"
+        rel="stylesheet">
+
 
     <title>Lepas Hijab</title>
 
@@ -41,49 +45,48 @@ include 'config.php';
     <!-- ***** Preloader End ***** -->
 
     <!-- Header -->
-    <header class="">
-        <nav class="navbar navbar-expand-lg">
-            <div class="container">
-                <a class="navbar-brand" href="produk.php">
-                    <h2>Lepas <em style="color:#FF6366">Hijab</em></h2>
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.php">Home
-                                <span class="sr-only">(current)</span>
-                            </a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="produk.php">Produk</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="keranjang.php">Keranjang</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="checkout.php">Checkout</a>
-                        </li>
-                        <!-- Jika sudah login -->
-                        <?php if (isset ($_SESSION["pelanggan"])): ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="logout.php">Logout</a>
-                        </li>
-                        <!--jika belum login -->
-                        <?php else: ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="login.php">Login</a>
-                        </li>
-                        <?php endif ?>
 
-                    </ul>
-                </div>
+    <nav class="navbar navbar-expand-lg" style="background-color: #3f5a5e;">
+        <div class="container">
+            <a class="navbar-brand" href="produk.php">
+                <h2>Lepas <em style="color:#FF6366">Hijab</em></h2>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php">Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="produk.php">Produk</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="keranjang.php">Keranjang</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="checkout.php">Checkout</a>
+                    </li>
+                    <!-- Jika sudah login -->
+                    <?php if (isset ($_SESSION["pelanggan"])): ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.php">Logout</a>
+                    </li>
+                    <!--jika belum login -->
+                    <?php else: ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.php">Login</a>
+                    </li>
+                    <?php endif ?>
+
+                </ul>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
 
     <!-- Page Content -->
     <div class="page-heading products-heading header-text"
@@ -104,7 +107,8 @@ include 'config.php';
     <div class="latest-products">
         <div class="container">
             <div class="section-heading">
-                <h4>Produk Lepas Hijab</h4>
+                <h4 style="font-family: 'Nunito', sans-serif;font-weight:700; font-size: 20px;color:#3f5a5e;">Produk
+                    Lepas Hijab</h4>
             </div>
 
             <div class="row">
@@ -115,14 +119,18 @@ include 'config.php';
                         <a href="produk.php"><img src="foto_produk/<?php echo $perproduk['foto_produk']; ?>" alt=""></a>
                         <div class="down-content">
                             <a href="#">
-                                <h4>
+                                <h4 style="color:#3f5a5e;">
                                     <?php echo $perproduk['nama_produk']; ?></h4>
                             </a>
-                            <h6><?php echo $perproduk['harga_produk']; ?></h6>
+                            <h6
+                                style=" font-family: 'Nunito' , sans-serif;font-weight:800; font-size:15px;color:#253b3e;">
+                                Rp.
+                                <?php echo  number_format($perproduk["harga_produk"]); ?></h6>
                             <p><?php echo $perproduk['deskripsi_produk']; ?></p>
-                            <a href="beli.php?id=<?php echo $perproduk['id_produk'];?>" class="btn btn-primary">Beli</a>
-                            <a href="detail.php?id=<?php echo $perproduk["id_produk"] ;?>"
-                                class="btn btn-outline-dark">Detail</a>
+                            <a href="beli.php?id=<?php echo $perproduk['id_produk'];?>" class="btn"
+                                style="background-color: #f33f3f; color:white;">Beli</a>
+                            <a href=" detail.php?id=<?php echo $perproduk["id_produk"] ;?>"
+                                class="btn btn-primary">Detail</a>
                         </div>
                     </div>
                 </div>
@@ -134,7 +142,9 @@ include 'config.php';
         <footer class="pt-4 pb-4 text-center bg-light">
             <div class="container">
                 <div class="my-3">
-                    <div class="h4">Lepas Hijab</div>
+                    <div class=""
+                        style="font-family: 'Nunito', sans-serif;font-size:27px;font-weight:800;color:#3f5a5e;">Lepas
+                        Hijab</div>
                     <p>Belanja & Retail</p>
                     <div class="social-nav">
                         <nav role="navigation">

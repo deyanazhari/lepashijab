@@ -55,7 +55,7 @@ if(empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"]))
     <!-- ***** Preloader End ***** -->
 
     <!-- Header -->
-    <nav class="navbar navbar-expand-lg" style="background-color: black;">
+    <nav class="navbar navbar-expand-lg" style="background-color: #3f5a5e;">
         <div class="container">
             <a class="navbar-brand" href="index.php">
                 <h2>Lepas <em style="color:#FF6366">Hijab</em></h2>
