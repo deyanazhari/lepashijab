@@ -95,7 +95,7 @@ if(empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"]))
             <h3 style="font-family: 'Nunito', sans-serif;font-weight:700; color:#3f5a5e;font-size:25px;">Keranjang
                 Belanja</h3>
             <hr>
-            <table class="styled-table">
+            <table class="table table-dark table-striped">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -116,7 +116,7 @@ if(empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"]))
                     $subharga = $pecah["harga_produk"]*$jumlah;
                     ?>
 
-                    <tr class="active-row">
+                    <tr class="">
                         <td><?php echo $nomor; ?></td>
                         <td><?php echo $pecah["nama_produk"]; ?></td>
                         <td>Rp. <?php echo number_format($pecah["harga_produk"]); ?></td>
@@ -131,11 +131,34 @@ if(empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"]))
                     <?php endforeach ?>
                 </tbody>
             </table>
-            <a href="produk.php" class="btn btn-light">Lanjutkan Belanja</a>
-            <a href="checkout.php" class="btn btn-primary">checkout</a>
+            <a href="produk.php" class="btn btn-primary">Lanjutkan Belanja</a>
+            <a href="checkout.php" class="btn" style="background-color: #f33f3f; color:white;">checkout</a>
         </div>
 
     </section>
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+    <!-- Additional Scripts -->
+    <script src="assets/js/custom.js"></script>
+    <script src="assets/js/owl.js"></script>
+    <script src="assets/js/slick.js"></script>
+    <script src="assets/js/isotope.js"></script>
+    <script src="assets/js/accordions.js"></script>
+
+
+    <script language="text/Javascript">
+    cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
+    function clearField(t) { //declaring the array outside of the
+        if (!cleared[t.id]) { // function makes it static and global
+            cleared[t.id] = 1; // you could use true and false, but that's more typing
+            t.value = ''; // with more chance of typos
+            t.style.color = '#fff';
+        }
+    }
+    </script>
 
 </body>
 

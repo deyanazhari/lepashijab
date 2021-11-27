@@ -44,20 +44,21 @@ if(empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"]))
 
 <body>
 
-    <!-- ***** Preloader Start ***** 
+    <!-- ***** Preloader Start ***** -->
     <div id="preloader">
         <div class="jumper">
             <div></div>
             <div></div>
             <div></div>
         </div>
-    </div> -->
+    </div>
     <!-- ***** Preloader End ***** -->
 
     <!-- Header -->
+
     <nav class="navbar navbar-expand-lg" style="background-color: #3f5a5e;">
         <div class="container">
-            <a class="navbar-brand" href="index.php">
+            <a class="navbar-brand" href="produk.php">
                 <h2>Lepas <em style="color:#FF6366">Hijab</em></h2>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
@@ -71,13 +72,13 @@ if(empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"]))
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link" href="produk.php">Produk</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="keranjang.php">Keranjang</a>
                     </li>
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="checkout.php">Checkout</a>
                     </li>
                     <!-- Jika sudah login -->
@@ -91,92 +92,109 @@ if(empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"]))
                         <a class="nav-link" href="login.php">Login</a>
                     </li>
                     <?php endif ?>
+
                 </ul>
             </div>
         </div>
     </nav>
-    <section class="konten">
+
+
+
+
+    <!-- Page Content -->
+    <div class="page-heading products-heading header-text"
+        style="background-image:url(assets/images/produk-bg.jpeg);padding: 300px 0px;">
         <div class="container">
-            <h3>Keranjang Belanja</h3>
-            <hr>
-            <table class="styled-table">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>produk</th>
-                        <th>Harga</th>
-                        <th>Jumlah</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php $nomor=1; ?>
-                    <?php $totalbelanja = 0; ?>
-                    <?php foreach ($_SESSION["keranjang"] as $id_produk => $jumlah): ?>
-                    <!-- menampilkan produk yang sedang diperulangkan berdasarkan id_produk -->
-                    <?php
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="text-content">
+                        <h4>new arrivals</h4>
+                        <h2 style="font-size: 30px;">Lepas Hijab produk</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"></div>
+    <hr>
+    <table class="table table-dark table-striped">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Produk</th>
+                <th>Harga</th>
+                <th>Jumlah</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php $nomor=1; ?>
+            <?php $totalbelanja = 0; ?>
+            <?php foreach ($_SESSION["keranjang"] as $id_produk => $jumlah): ?>
+            <!-- menampilkan produk yang sedang diperulangkan berdasarkan id_produk -->
+            <?php
                     $ambil = $koneksi->query ("SELECT * FROM produk WHERE id_produk='$id_produk'");
                     $pecah = $ambil->fetch_assoc();
                     $subharga = $pecah["harga_produk"]*$jumlah;
                     ?>
 
-                    <tr class="active-row">
-                        <td><?php echo $nomor; ?></td>
-                        <td><?php echo $pecah["nama_produk"]; ?></td>
-                        <td>Rp. <?php echo number_format($pecah["harga_produk"]); ?></td>
-                        <td><?php echo $jumlah; ?></td>
-                        <td>Rp. <?php echo number_format($subharga);?></td>
-                    </tr>
-                    <?php $nomor++; ?>
-                    <?php $totalbelanja+=$subharga; ?>
-                    <?php endforeach ?>
-                </tbody>
-                <tfoot>
-                    <tr style="color: #007c65;">
-                        <th colspan="4">Total Belanja</th>
-                        <th>Rp. <?php echo number_format($totalbelanja) ?> </th>
-                        <th></th>
-                    </tr>
-                </tfoot>
-            </table>
-            <form method="post">
+            <tr class="">
+                <td><?php echo $nomor; ?></td>
+                <td><?php echo $pecah["nama_produk"]; ?></td>
+                <td>Rp. <?php echo number_format($pecah["harga_produk"]); ?></td>
+                <td><?php echo $jumlah; ?></td>
+                <td>Rp. <?php echo number_format($subharga);?></td>
+            </tr>
+            <?php $nomor++; ?>
+            <?php $totalbelanja+=$subharga; ?>
+            <?php endforeach ?>
+        </tbody>
+        <tfoot>
+            <tr style="color: #007c65;">
+                <th colspan="4">Total Belanja</th>
+                <th>Rp. <?php echo number_format($totalbelanja) ?> </th>
+                <th></th>
+            </tr>
+        </tfoot>
+    </table>
+    <form method="post">
 
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <input type="text" readonly value="<?php echo $_SESSION['pelanggan']['nama_pelanggan']?>"
-                                class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <input type="text" readonly value="<?php echo $_SESSION['pelanggan']['telepon_pelanggan']?>"
-                                class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <select class="form-control" name="id_ongkir">
-                            <option value="">Pilih Ongkos Kirim</option>
-                            <?php 
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="text" readonly value="<?php echo $_SESSION['pelanggan']['nama_pelanggan']?>"
+                        class="form-control">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="text" readonly value="<?php echo $_SESSION['pelanggan']['telepon_pelanggan']?>"
+                        class="form-control">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <select class="form-control" name="id_ongkir">
+                    <option value="">Pilih Ongkos Kirim</option>
+                    <?php 
                             $ambil=$koneksi->query("SELECT * FROM ongkir");
                             while($perongkir = $ambil-> fetch_assoc()) {
                              ?>
-                            <option value="<?php echo $perongkir["id_ongkir"] ?>">
-                                <?php echo $perongkir['nama_kota']?> -
-                                Rp. <?php echo number_format($perongkir['tarif'])?>
-                            </option>
-                            <?php } ?>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Alamat Lengkap Pengiriman</label>
-                    <textarea class="form-control" name="alamat_pengiriman"
-                        placeholder="Masukkan Alamat Lengkap"></textarea>
-                </div>
-                <button class="btn" name="checkout" style="background-color : #004638; color : white;">Checkout</button>
-            </form>
-            <?php  
+                    <option value="<?php echo $perongkir["id_ongkir"] ?>">
+                        <?php echo $perongkir['nama_kota']?> -
+                        Rp. <?php echo number_format($perongkir['tarif'])?>
+                    </option>
+                    <?php } ?>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Alamat Lengkap Pengiriman</label>
+            <textarea class="form-control" name="alamat_pengiriman" placeholder="Masukkan Alamat Lengkap"></textarea>
+        </div>
+        <button name="checkout" class="btn" style="background-color: #f33f3f; color:white;">Checkout</button>
+    </form>
+    <?php  
             if (isset ($_POST["checkout"]))
             {
                 $id_pelanggan = $_SESSION["pelanggan"]["id_pelanggan"];
@@ -212,10 +230,32 @@ if(empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"]))
                echo "<script>location='nota.php?id=$id_pembelian_barusan';</script>";
             }
             ?>
-        </div>
-    </section>
-    <pre><?php print_r($_SESSION['pelanggan'])?></pre>
-    <pre><?php print_r($_SESSION['keranjang'])?></pre>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+    <!-- Additional Scripts -->
+    <script src="assets/js/custom.js"></script>
+    <script src="assets/js/owl.js"></script>
+    <script src="assets/js/slick.js"></script>
+    <script src="assets/js/isotope.js"></script>
+    <script src="assets/js/accordions.js"></script>
+
+
+    <script language="text/Javascript">
+    cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
+    function clearField(t) { //declaring the array outside of the
+        if (!cleared[t.id]) { // function makes it static and global
+            cleared[t.id] = 1; // you could use true and false, but that's more typing
+            t.value = ''; // with more chance of typos
+            t.style.color = '#fff';
+        }
+    }
+    </script>
 
 </body>
 

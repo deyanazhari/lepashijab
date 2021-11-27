@@ -1,12 +1,7 @@
-<?php session_start(); ?>
-<?php include 'config.php'; ?>
-<?php 
-$id_produk = $_GET["id"];
-$ambil = $koneksi->query("SELECT * FROM produk WHERE id_produk='$id_produk'");
-$detail = $ambil -> fetch_assoc();
-echo "<pre>";
-print_r($detail);
-echo "</pre>";
+<?php
+session_start();
+//koneksi database
+include 'config.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,9 +14,11 @@ echo "</pre>";
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
         rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet">
     <link href="./assets/font-awesome/css/all.min.css?ver=1.2.0" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Gidugu&family=Nunito:wght@700;800&family=Oswald&family=Outfit&family=Roboto&family=Roboto+Condensed&family=Spectral:wght@500&display=swap"
+        rel="stylesheet">
+
 
     <title>Lepas Hijab</title>
 
@@ -32,26 +29,24 @@ echo "</pre>";
     <link rel="stylesheet" href="assets/css/fontawesome.css">
     <link rel="stylesheet" href="assets/css/templatemo-sixteen.css">
     <link rel="stylesheet" href="assets/css/owl.css">
-    <link rel="stylesheet" href="assets/css/table.css">
-
-</head>
 
 <body>
 
-    <!-- ***** Preloader Start ***** 
+    <!-- ***** Preloader Start *****-->
     <div id="preloader">
         <div class="jumper">
             <div></div>
             <div></div>
             <div></div>
         </div>
-    </div> -->
-    <!-- ***** Preloader End ***** -->
+    </div>
+    <!-- Preloader End ***** -->
 
     <!-- Header -->
+
     <nav class="navbar navbar-expand-lg" style="background-color: #3f5a5e;">
         <div class="container">
-            <a class="navbar-brand" href="index.php">
+            <a class="navbar-brand" href="produk.php">
                 <h2>Lepas <em style="color:#FF6366">Hijab</em></h2>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
@@ -65,7 +60,7 @@ echo "</pre>";
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link" href="produk.php">Produk</a>
                     </li>
                     <li class="nav-item">
@@ -85,44 +80,27 @@ echo "</pre>";
                         <a class="nav-link" href="login.php">Login</a>
                     </li>
                     <?php endif ?>
+
                 </ul>
             </div>
         </div>
     </nav>
-    <h2 class="section-heading" style="margin-top: 30px; ">Detail Produk</h2>
-    <section class="kontent">
-        <div class="container" style="margin-top: 60px;">
+
+    <!-- Page Content -->
+    <div class="page-heading products-heading header-text"
+        style="background-image:url(assets/images/produk-bg.jpeg);padding: 300px 0px;">
+        <div class="container">
             <div class="row">
-                <div class="col-md-6">
-                    <img src="foto_produk/<?php echo $detail["foto_produk"]; ?>" class="img-fluid">
-                </div>
-                <div class="col-md-6">
-                    <h2><?php echo $detail["nama_produk"]?></h2>
-                    <h4>Rp. <?php echo number_format($detail["harga_produk"])?></h4>
-                    <form method="post">
-                        <div class="form-group">
-                            <div class="input-group">
-                                <input type="number" min="1" name="jumlah" class="form-control">
-                                <div class="input-class-button">
-                                    <button class="btn btn-primary" name="beli">Beli</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                    <?php 
-                    // jika ada tombol beli
-                    if (isset ($_POST["beli"])){
-                        $jumlah = $_POST["jumlah"];
-                        $_SESSION["keranjang"][$id_produk] = $jumlah;
-                        echo "<script>alert('Produk telah masuk ke keranjang');</script>";
-                        echo "<script>location='keranjang.php';</script>";
-                    }
-                    ?>
-                    <p><?php echo $detail["deskripsi_produk"]; ?></p>
+                <div class="col-md-12">
+                    <div class="text-content">
+                        <h4>new arrivals</h4>
+                        <h2 style="font-size: 30px;">Lepas Hijab produk</h2>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+
 </body>
 
 </html>
