@@ -32,58 +32,72 @@ include 'config.php';
 
 <body>
     <!-- Header -->
-    <nav class="navbar navbar-expand-lg" style="background-color: black;">
+    <header class="" style="background-color: #3f5a5e;">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="produk.php">
+                    <h2>Lepas <em style="color:#FF6366">Hijab</em></h2>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.php">Home
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="produk.php">Produk</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="keranjang.php">Keranjang</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="checkout.php">Checkout</a>
+                        </li>
+                        <!-- Jika sudah login -->
+                        <?php if (isset ($_SESSION["pelanggan"])): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="logout.php">Logout</a>
+                        </li>
+                        <!--jika belum login -->
+                        <?php else: ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="login.php">Login</a>
+                        </li>
+                        <?php endif ?>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="page-heading products-heading header-text"
+        style="background-image:url(assets/images/produk-bg.jpeg);padding: 300px 0px;">
         <div class="container">
-            <a class="navbar-brand" href="index.php">
-                <h2>Lepas <em style="color:#FF6366">Hijab</em></h2>
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php">Home
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="produk.php">Produk</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="keranjang.php">Keranjang</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="checkout.php">Checkout</a>
-                    </li>
-                    <!-- Jika sudah login -->
-                    <?php if (isset ($_SESSION["pelanggan"])): ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="logout.php">Logout</a>
-                    </li>
-                    <!--jika belum login -->
-                    <?php else: ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="login.php">Login</a>
-                    </li>
-                    <?php endif ?>
-                </ul>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="text-content">
+                        <h4>new arrivals</h4>
+                        <h2 style="font-size: 30px;">Lepas Hijab produk</h2>
+                    </div>
+                </div>
             </div>
         </div>
-    </nav>
+    </div>
 
     <section class="konten">
         <div class="container">
-
-
             <!-- Nota -->
             <h2>Detail Pembelian</h2>
             <?php 
 $ambil = $koneksi->query("SELECT * FROM pembelian JOIN pelanggan ON pembelian.id_pelanggan=pelanggan.id_pelanggan WHERE pembelian.id_pembelian='$_GET[id]'");
 $detail = $ambil -> fetch_assoc();
 ?>
-            <div class="row" style="background-color:#007c65; color: #ffffff;">
+            <div class="row">
                 <div class="col-md-4">
                     <h4>Pembelian</h4>
                     <strong>No. Pembelian: <?php echo $detail['id_pembelian']; ?></strong> <br>
@@ -106,7 +120,7 @@ $detail = $ambil -> fetch_assoc();
                 </div>
             </div>
 
-            <table class="styled-table">
+            <table class="table table-dark table-striped">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -148,6 +162,29 @@ $detail = $ambil -> fetch_assoc();
             </div>
         </div>
     </section>
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+    <!-- Additional Scripts -->
+    <script src="assets/js/custom.js"></script>
+    <script src="assets/js/owl.js"></script>
+    <script src="assets/js/slick.js"></script>
+    <script src="assets/js/isotope.js"></script>
+    <script src="assets/js/accordions.js"></script>
+
+
+    <script language="text/Javascript">
+    cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
+    function clearField(t) { //declaring the array outside of the
+        if (!cleared[t.id]) { // function makes it static and global
+            cleared[t.id] = 1; // you could use true and false, but that's more typing
+            t.value = ''; // with more chance of typos
+            t.style.color = '#fff';
+        }
+    }
+    </script>
 </body>
 
 </html>

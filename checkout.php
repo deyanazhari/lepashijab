@@ -56,47 +56,50 @@ if(empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"]))
 
     <!-- Header -->
 
-    <nav class="navbar navbar-expand-lg" style="background-color: #3f5a5e;">
-        <div class="container">
-            <a class="navbar-brand" href="produk.php">
-                <h2>Lepas <em style="color:#FF6366">Hijab</em></h2>
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php">Home
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="produk.php">Produk</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="keranjang.php">Keranjang</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="checkout.php">Checkout</a>
-                    </li>
-                    <!-- Jika sudah login -->
-                    <?php if (isset ($_SESSION["pelanggan"])): ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="logout.php">Logout</a>
-                    </li>
-                    <!--jika belum login -->
-                    <?php else: ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="login.php">Login</a>
-                    </li>
-                    <?php endif ?>
+    <!-- Header -->
+    <header class="" style="background-color: #3f5a5e;">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="produk.php">
+                    <h2>Lepas <em style="color:#FF6366">Hijab</em></h2>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.php">Home
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="produk.php">Produk</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="keranjang.php">Keranjang</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="checkout.php">Checkout</a>
+                        </li>
+                        <!-- Jika sudah login -->
+                        <?php if (isset ($_SESSION["pelanggan"])): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="logout.php">Logout</a>
+                        </li>
+                        <!--jika belum login -->
+                        <?php else: ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="login.php">Login</a>
+                        </li>
+                        <?php endif ?>
 
-                </ul>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
 
 
@@ -115,86 +118,87 @@ if(empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"]))
             </div>
         </div>
     </div>
-
-    <div class="container"></div>
-    <hr>
-    <table class="table table-dark table-striped">
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>Produk</th>
-                <th>Harga</th>
-                <th>Jumlah</th>
-                <th>Total</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php $nomor=1; ?>
-            <?php $totalbelanja = 0; ?>
-            <?php foreach ($_SESSION["keranjang"] as $id_produk => $jumlah): ?>
-            <!-- menampilkan produk yang sedang diperulangkan berdasarkan id_produk -->
-            <?php
+    <section>
+        <div class="container"></div>
+        <hr>
+        <table class="table table-dark table-striped">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Produk</th>
+                    <th>Harga</th>
+                    <th>Jumlah</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php $nomor=1; ?>
+                <?php $totalbelanja = 0; ?>
+                <?php foreach ($_SESSION["keranjang"] as $id_produk => $jumlah): ?>
+                <!-- menampilkan produk yang sedang diperulangkan berdasarkan id_produk -->
+                <?php
                     $ambil = $koneksi->query ("SELECT * FROM produk WHERE id_produk='$id_produk'");
                     $pecah = $ambil->fetch_assoc();
                     $subharga = $pecah["harga_produk"]*$jumlah;
                     ?>
 
-            <tr class="">
-                <td><?php echo $nomor; ?></td>
-                <td><?php echo $pecah["nama_produk"]; ?></td>
-                <td>Rp. <?php echo number_format($pecah["harga_produk"]); ?></td>
-                <td><?php echo $jumlah; ?></td>
-                <td>Rp. <?php echo number_format($subharga);?></td>
-            </tr>
-            <?php $nomor++; ?>
-            <?php $totalbelanja+=$subharga; ?>
-            <?php endforeach ?>
-        </tbody>
-        <tfoot>
-            <tr style="color: #007c65;">
-                <th colspan="4">Total Belanja</th>
-                <th>Rp. <?php echo number_format($totalbelanja) ?> </th>
-                <th></th>
-            </tr>
-        </tfoot>
-    </table>
-    <form method="post">
+                <tr class="">
+                    <td><?php echo $nomor; ?></td>
+                    <td><?php echo $pecah["nama_produk"]; ?></td>
+                    <td>Rp. <?php echo number_format($pecah["harga_produk"]); ?></td>
+                    <td><?php echo $jumlah; ?></td>
+                    <td>Rp. <?php echo number_format($subharga);?></td>
+                </tr>
+                <?php $nomor++; ?>
+                <?php $totalbelanja+=$subharga; ?>
+                <?php endforeach ?>
+            </tbody>
+            <tfoot>
+                <tr style="color: #007c65;">
+                    <th colspan="4">Total Belanja</th>
+                    <th>Rp. <?php echo number_format($totalbelanja) ?> </th>
+                    <th></th>
+                </tr>
+            </tfoot>
+        </table>
+        <form method="post">
 
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group">
-                    <input type="text" readonly value="<?php echo $_SESSION['pelanggan']['nama_pelanggan']?>"
-                        class="form-control">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <input type="text" readonly value="<?php echo $_SESSION['pelanggan']['nama_pelanggan']?>"
+                            class="form-control">
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <input type="text" readonly value="<?php echo $_SESSION['pelanggan']['telepon_pelanggan']?>"
-                        class="form-control">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <input type="text" readonly value="<?php echo $_SESSION['pelanggan']['telepon_pelanggan']?>"
+                            class="form-control">
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <select class="form-control" name="id_ongkir">
-                    <option value="">Pilih Ongkos Kirim</option>
-                    <?php 
+                <div class="col-md-4">
+                    <select class="form-control" name="id_ongkir">
+                        <option value="">Pilih Ongkos Kirim</option>
+                        <?php 
                             $ambil=$koneksi->query("SELECT * FROM ongkir");
                             while($perongkir = $ambil-> fetch_assoc()) {
                              ?>
-                    <option value="<?php echo $perongkir["id_ongkir"] ?>">
-                        <?php echo $perongkir['nama_kota']?> -
-                        Rp. <?php echo number_format($perongkir['tarif'])?>
-                    </option>
-                    <?php } ?>
-                </select>
+                        <option value="<?php echo $perongkir["id_ongkir"] ?>">
+                            <?php echo $perongkir['nama_kota']?> -
+                            Rp. <?php echo number_format($perongkir['tarif'])?>
+                        </option>
+                        <?php } ?>
+                    </select>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label>Alamat Lengkap Pengiriman</label>
-            <textarea class="form-control" name="alamat_pengiriman" placeholder="Masukkan Alamat Lengkap"></textarea>
-        </div>
-        <button name="checkout" class="btn" style="background-color: #f33f3f; color:white;">Checkout</button>
-    </form>
-    <?php  
+            <div class="form-group">
+                <label>Alamat Lengkap Pengiriman</label>
+                <textarea class="form-control" name="alamat_pengiriman"
+                    placeholder="Masukkan Alamat Lengkap"></textarea>
+            </div>
+            <button name="checkout" class="btn" style="background-color: #f33f3f; color:white;">Checkout</button>
+        </form>
+        <?php  
             if (isset ($_POST["checkout"]))
             {
                 $id_pelanggan = $_SESSION["pelanggan"]["id_pelanggan"];
@@ -230,7 +234,8 @@ if(empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"]))
                echo "<script>location='nota.php?id=$id_pembelian_barusan';</script>";
             }
             ?>
-    </div>
+        </div>
+    </section>
 
 
     <!-- Bootstrap core JavaScript -->

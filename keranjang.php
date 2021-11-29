@@ -50,47 +50,63 @@ if(empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"]))
     <!-- ***** Preloader End ***** -->
 
     <!-- Header -->
-    <nav class="navbar navbar-expand-lg" style="background-color: #3f5a5e;">
+    <header class="" style="background-color: #3f5a5e;">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="produk.php">
+                    <h2>Lepas <em style="color:#FF6366">Hijab</em></h2>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.php">Home
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="produk.php">Produk</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="keranjang.php">Keranjang</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="checkout.php">Checkout</a>
+                        </li>
+                        <!-- Jika sudah login -->
+                        <?php if (isset ($_SESSION["pelanggan"])): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="logout.php">Logout</a>
+                        </li>
+                        <!--jika belum login -->
+                        <?php else: ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="login.php">Login</a>
+                        </li>
+                        <?php endif ?>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="page-heading products-heading header-text"
+        style="background-image:url(assets/images/produk-bg.jpeg);padding: 300px 0px;">
         <div class="container">
-            <a class="navbar-brand" href="index.php">
-                <h2>Lepas <em style="color:#FF6366">Hijab</em></h2>
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php">Home
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="produk.php">Produk</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="keranjang.php">Keranjang</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="checkout.php">Checkout</a>
-                    </li>
-                    <!-- Jika sudah login -->
-                    <?php if (isset ($_SESSION["pelanggan"])): ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="logout.php">Logout</a>
-                    </li>
-                    <!--jika belum login -->
-                    <?php else: ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="login.php">Login</a>
-                    </li>
-                    <?php endif ?>
-                </ul>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="text-content">
+                        <h4>new arrivals</h4>
+                        <h2 style="font-size: 30px;">Lepas Hijab produk</h2>
+                    </div>
+                </div>
             </div>
         </div>
-    </nav>
-    <section class="konten">
+    </div>
+    <section>
         <div class="container">
             <h3 style="font-family: 'Nunito', sans-serif;font-weight:700; color:#3f5a5e;font-size:25px;">Keranjang
                 Belanja</h3>
