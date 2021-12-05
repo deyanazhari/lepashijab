@@ -31,7 +31,7 @@ include 'config.php';
 </head>
 
 <body>
-    <!-- Header -->
+    <!-- Heade -->
     <header class="" style="background-color: #3f5a5e;">
         <nav class="navbar navbar-expand-lg">
             <div class="container">

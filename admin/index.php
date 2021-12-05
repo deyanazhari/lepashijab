@@ -1,6 +1,6 @@
 ﻿<?php
 session_start();
-//koneksi database
+//koneksi databas
 include 'config.php';
 
 if (!isset($_SESSION['admin'])){

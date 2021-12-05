@@ -7,7 +7,7 @@ $id_produk = $_GET['id'];
 
 
 
-//jika sudah ada produk itu di kernjang maka produk itu jumlah nya +1
+//jika sudah ada produk tu di kernjang maka produk itu jumlah nya +1
 if(isset($_SESSION['keranjang'][$id_produk]))
 {
     $_SESSION['keranjang'][$id_produk]+=1;

@@ -36,7 +36,7 @@ $koneksi = new mysqli ("localhost","root","","lepashijab");
 
 <body>
 
-    <!-- ***** Preloader Start ***** -->
+    <!-- ***** Preloader Start **** -->
     <div id="preloader">
         <div class="jumper">
             <div></div>

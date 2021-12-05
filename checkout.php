@@ -135,7 +135,7 @@ if(empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"]))
                 <?php $nomor=1; ?>
                 <?php $totalbelanja = 0; ?>
                 <?php foreach ($_SESSION["keranjang"] as $id_produk => $jumlah): ?>
-                <!-- menampilkan produk yang sedang diperulangkan berdasarkan id_produk -->
+                <!-- menampilkan roduk yang sedang diperulangkan berdasarkan id_produk -->
                 <?php
                     $ambil = $koneksi->query ("SELECT * FROM produk WHERE id_produk='$id_produk'");
                     $pecah = $ambil->fetch_assoc();

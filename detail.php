@@ -38,7 +38,7 @@ echo "</pre>";
 
 <body>
 
-    <!-- ***** Preloader Start ***** 
+    <!-- ***** Preloader Start **** 
     <div id="preloader">
         <div class="jumper">
             <div></div>

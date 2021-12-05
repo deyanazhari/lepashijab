@@ -14,7 +14,7 @@ $detail = $ambil -> fetch_assoc();
     Tanggal: <?php echo $detail ['tanggal_pembelian']; ?> <br>
     Total: <?php echo $detail ['total_pembelian']; ?> <br>
 </p>
-
+<!---->
 <table class="table table-bordered">
     <thead>
         <tr>

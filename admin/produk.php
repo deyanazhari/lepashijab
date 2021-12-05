@@ -11,6 +11,7 @@
             <th>aksi</th>
         </tr>
     </thead>
+    <!---->
     <tbody>
         <?php $nomor=1; ?>
         <?php $ambil = $koneksi -> query ("SELECT * FROM produk"); ?>

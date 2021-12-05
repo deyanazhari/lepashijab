@@ -1,5 +1,6 @@
 <h2>Data Pembelian</h2>
 <table class="table table-bordered">
+    <!---->
     <thead>
         <tr>
             <th>No</th>

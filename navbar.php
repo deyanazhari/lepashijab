@@ -32,7 +32,7 @@ include 'config.php';
 
 <body>
 
-    <!-- ***** Preloader Start *****-->
+    <!-- ***** Prloader Start *****-->
     <div id="preloader">
         <div class="jumper">
             <div></div>

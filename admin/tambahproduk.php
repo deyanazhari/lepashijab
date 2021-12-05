@@ -22,6 +22,7 @@
     </div>
     <button class="btn btn-primary" name="save">Simpan</button>
 </form>
+<!---->
 <?php 
 if (isset($_POST['save']))
 {
