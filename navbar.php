@@ -79,6 +79,9 @@ include 'config.php';
                     <li class="nav-item">
                         <a class="nav-link" href="login.php">Login</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.php">Daftar</a>
+                    </li>
                     <?php endif ?>
 
                 </ul>

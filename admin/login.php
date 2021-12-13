@@ -56,6 +56,9 @@ include 'config.php';
                                 <span class="pull-right">
                                     <a href="#">Forgot password?</a>
                                 </span>
+                                <span class="pull-right">
+                                    <a href="#">Daftar</a>
+                                </span>
                             </div>
 
                             <button class="btn btn-primary" name="login">Login</button>
