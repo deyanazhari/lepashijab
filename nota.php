@@ -1,4 +1,5 @@
 <?php 
+session_start();
 include 'config.php';
 ?>
 
@@ -61,6 +62,9 @@ include 'config.php';
                         <!-- Jika sudah login -->
                         <?php if (isset ($_SESSION["pelanggan"])): ?>
                         <li class="nav-item">
+                            <a class="nav-link" href="riwayat.php">Riwayat Belanja</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="logout.php">Logout</a>
                         </li>
                         <!--jika belum login -->
@@ -72,40 +76,51 @@ include 'config.php';
                         <a class="nav-link" href="daftar.php">Daftar</a>
                     </li>
                         <?php endif ?>
-
                     </ul>
+                    <form action="pencarian.php" method="get" class="d-flex" style="place-items: right">
+                        <input type="text" class="form-control" name="keyword">
+                        <button class="btn btn-primary">Cari</button>
+                    </form>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="page-heading products-heading header-text"
-        style="background-image:url(assets/images/produk-bg.jpeg);padding: 300px 0px;">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="text-content">
-                        <h4>new arrivals</h4>
-                        <h2 style="font-size: 30px;">Lepas Hijab produk</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <br>
 
+    <div class="banner header-text"></div>
     <section class="konten">
         <div class="container">
             <!-- Nota -->
-            <h2>Detail Pembelian</h2>
+            <h2>Detail Pembelian</h2><br>
             <?php 
 $ambil = $koneksi->query("SELECT * FROM pembelian JOIN pelanggan ON pembelian.id_pelanggan=pelanggan.id_pelanggan WHERE pembelian.id_pembelian='$_GET[id]'");
 $detail = $ambil -> fetch_assoc();
 ?>
+
+<!-- jika pelanggan yang beli tidak sama dengan pelanggan yang login, maka dilarikan ke riwayat.php karena dia tidak berhak melihat nota orang lain-->
+<!-- pelanggan yang beli harus pelanggan yang login-->
+<?php 
+// mendapatkan id_pelanggan yang  beli
+$idpelangganyangbeli = $detail["id_pelanggan"];
+
+// mendapatkan id_pelanggan yang  beli
+$idpelangganyanglogin = $_SESSION["pelanggan"]["id_pelanggan"];
+
+if ($idpelangganyangbeli!==$idpelangganyanglogin)
+{
+    echo "<script>alert('jangan nakal');</script>";
+    echo "<script>location='riwayat.php';</script>";
+    exit();
+}
+?>
+
+
             <div class="row">
                 <div class="col-md-4">
                     <h4>Pembelian</h4>
                     <strong>No. Pembelian: <?php echo $detail['id_pembelian']; ?></strong> <br>
-                    Tanggal: <?php echo $detail ['tanggal_pembelian']; ?> <br>
-                    Total: Rp. <?php echo number_format($detail ['total_pembelian']); ?> <br>
+                    Tanggal: <?php echo date("d F Y",strtotime($detail['tanggal_pembelian'])); ?></strong><br>
+                    Total: Rp. <?php echo number_format($detail ['total_pembelian']); ?>,00
                 </div>
                 <div class="col-md-4">
                     <h4>Pelanggan</h4>
@@ -117,9 +132,10 @@ $detail = $ambil -> fetch_assoc();
                 </div>
                 <div class="col-md-4">
                     <h4>Pengiriman</h4>
-                    <strong> <?php echo $detail['nama_kota']; ?></strong> <br>
-                    Ongkos Kirim: Rp. <?php echo number_format( $detail['tarif']);?> <br>
-                    Alamat: <?php echo $detail['alamat_pengiriman']; ?>
+                    <strong> <?php echo $detail['tipe'];?> <?php echo $detail['kota'];?> <?php echo $detail['provinsi']; ?></strong> <br>
+                    Ongkos Kirim: Rp. <?php echo number_format($detail['ongkir']);?>,00<br>
+                    Ekspedisi: <?php echo $detail["ekspedisi"] ?> <?php echo $detail["paket"] ?> <?php echo $detail["estimasi"] ?> <br>
+                    Alamat Pengiriman: <?php echo ($detail['alamat_pengiriman']); ?>
                 </div>
             </div>
 
@@ -165,6 +181,34 @@ $detail = $ambil -> fetch_assoc();
             </div>
         </div>
     </section>
+
+    <footer class="pt-4 pb-4 text-center bg-light">
+        <div class="container">
+            <div class="my-3">
+                <div style="font-family: 'Nunito', sans-serif;font-size:27px;font-weight:800;color:#3f5a5e;">LEPAS HIJAB
+                </div>
+                <p>Belanja & retail</p>
+                <div class="social-nav">
+                    <nav role="navigation">
+                        <ul class="nav justify-content-center">
+
+                            <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/lepashijab"
+                                    title="Instagram"><i class="fab fa-instagram fa-2x"></i><span
+                                        class="menu-title sr-only">Instagram</span></a></li>
+                            <li class="nav-item"><a class="nav-link" href="https://www.linkedin.com/"
+                                    title="LinkedIn"><i class="fab fa-whatsapp fa-2x"></i><span
+                                        class="menu-title sr-only">LinkedIn</span></a></li>
+                            <li class="nav-item"><a class="nav-link" href="https://www.linkedin.com/"
+                                    title="LinkedIn"><i class="fas fa-store fa-2x"></i><span
+                                        class="menu-title sr-only">LinkedIn</span></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="text-small text-secondary">
+                <div class="mb-1">&copy; All rights reserved.</div>
+    </footer>
+    
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

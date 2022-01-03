@@ -4,9 +4,9 @@
 $id_produk = $_GET["id"];
 $ambil = $koneksi->query("SELECT * FROM produk WHERE id_produk='$id_produk'");
 $detail = $ambil -> fetch_assoc();
-echo "<pre>";
-print_r($detail);
-echo "</pre>";
+//echo "<pre>";
+//print_r($detail);
+//echo "</pre>";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,6 +77,9 @@ echo "</pre>";
                     <!-- Jika sudah login -->
                     <?php if (isset ($_SESSION["pelanggan"])): ?>
                     <li class="nav-item">
+                        <a class="nav-link" href="riwayat.php">Riwayat Belanja</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="logout.php">Logout</a>
                     </li>
                     <!--jika belum login -->
@@ -89,6 +92,10 @@ echo "</pre>";
                     </li>
                     <?php endif ?>
                 </ul>
+                    <form action="pencarian.php" method="get" class="navbar-form navbar-right">
+                        <input type="text" class="form-control" name="keyword">
+                        <button class="btn btn-primary">Cari</button>
+                    </form>
             </div>
         </div>
     </nav>
@@ -102,10 +109,13 @@ echo "</pre>";
                 <div class="col-md-6">
                     <h2><?php echo $detail["nama_produk"]?></h2>
                     <h4>Rp. <?php echo number_format($detail["harga_produk"])?></h4>
+
+                    <h5>Stok: <?php echo $detail['stok_produk'] ?></h5>
+
                     <form method="post">
                         <div class="form-group">
                             <div class="input-group">
-                                <input type="number" min="1" name="jumlah" class="form-control">
+                                <input type="number" min="1" class="form-control" name="jumlah" max="<?php echo $detail['stok_produk'] ?>">
                                 <div class="input-class-button">
                                     <button class="btn btn-primary" name="beli">Beli</button>
                                 </div>

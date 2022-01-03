@@ -69,8 +69,16 @@ include 'config.php';
             $akun = $ambil->fetch_assoc();
             $_SESSION["pelanggan"]= $akun;
             echo "<script>alert('anda sukses login');</script>";
-            echo "<script>location='index.php';</script>";
 
+            //jika sudah belanja
+            if (isset($_SESSION["keranjang"]) OR !empty($_SESSION["keranjang"]))
+            {
+                echo "<script>location='index.php';</script>";
+            }
+            else
+            {
+                echo "<script>location='riwayat.php';</script>";
+            }
         }
         else
         {

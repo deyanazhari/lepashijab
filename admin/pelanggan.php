@@ -3,11 +3,11 @@
     <!---->
     <thead>
         <tr>
-            <th>no</th>
-            <th>nama</th>
-            <th>email</th>
-            <th>telepon</th>
-            <th>aksi</th>
+            <th>No</th>
+            <th>Nama</th>
+            <th>Email</th>
+            <th>Telepon</th>
+            <th>Aksi</th>
         </tr>
     </thead>
     <tbody>

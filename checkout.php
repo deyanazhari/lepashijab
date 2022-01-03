@@ -29,7 +29,7 @@ if(empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"]))
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet">
     <link href="./assets/font-awesome/css/all.min.css?ver=1.2.0" rel="stylesheet">
 
-    <title>Keranjang Belanja</title>
+    <title>Checkout</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -86,6 +86,9 @@ if(empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"]))
                         <!-- Jika sudah login -->
                         <?php if (isset ($_SESSION["pelanggan"])): ?>
                         <li class="nav-item">
+                            <a class="nav-link" href="riwayat.php">Riwayat Belanja</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="logout.php">Logout</a>
                         </li>
                         <!--jika belum login -->
@@ -95,17 +98,16 @@ if(empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"]))
                         </li>
                         <li class="nav-item">
                         <a class="nav-link" href="daftar.php">Daftar</a>
-                    </li>
+                        </li>
                         <?php endif ?>
-
                     </ul>
-                </div>
+                    <form action="pencarian.php" method="get" class="d-flex" style="place-items: right">
+                        <input type="text" class="form-control" name="keyword">
+                        <button class="btn btn-primary">Cari</button>
+                    </form>
             </div>
         </nav>
     </header>
-
-
-
 
     <!-- Page Content -->
     <div class="page-heading products-heading header-text"
@@ -114,15 +116,16 @@ if(empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"]))
             <div class="row">
                 <div class="col-md-12">
                     <div class="text-content">
-                        <h4>new arrivals</h4>
-                        <h2 style="font-size: 30px;">Lepas Hijab produk</h2>
+                        <h2 style="font-size: 30px;">Lepas Hijab Store</h2>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <section>
-        <div class="container"></div>
+        <div class="container">
+        <h3 style="font-family: 'Nunito', sans-serif;font-weight:700; color:#3f5a5e;font-size:25px;">Checkout
+                Belanja</h3>
         <hr>
         <table class="table table-dark table-striped">
             <thead>
@@ -135,14 +138,23 @@ if(empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"]))
                 </tr>
             </thead>
             <tbody>
-                <?php $nomor=1; ?>
+            <?php $nomor=1;?>
+                <?php $totalberat = 0; ?>
                 <?php $totalbelanja = 0; ?>
                 <?php foreach ($_SESSION["keranjang"] as $id_produk => $jumlah): ?>
                 <!-- menampilkan roduk yang sedang diperulangkan berdasarkan id_produk -->
-                <?php
+                    <?php
                     $ambil = $koneksi->query ("SELECT * FROM produk WHERE id_produk='$id_produk'");
                     $pecah = $ambil->fetch_assoc();
-                    $subharga = $pecah["harga_produk"]*$jumlah;
+                    $subharga = $pecah["harga_produk"] * $jumlah;
+                    //subberat diperoleh dari berat produk x jumlah
+                    $subberat = $pecah["berat_produk"] * $jumlah;
+                    //totalberat
+                    $totalberat+=$subberat;
+
+                    //echo "<pre>";
+                    //print_r ($pecah);
+                    //echo "</pre>";
                     ?>
 
                 <tr class="">
@@ -164,8 +176,8 @@ if(empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"]))
                 </tr>
             </tfoot>
         </table>
-        <form method="post">
 
+        <form method="post">
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
@@ -179,56 +191,103 @@ if(empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"]))
                             class="form-control">
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <select class="form-control" name="id_ongkir">
-                        <option value="">Pilih Ongkos Kirim</option>
-                        <?php 
-                            $ambil=$koneksi->query("SELECT * FROM ongkir");
-                            while($perongkir = $ambil-> fetch_assoc()) {
-                             ?>
-                        <option value="<?php echo $perongkir["id_ongkir"] ?>">
-                            <?php echo $perongkir['nama_kota']?> -
-                            Rp. <?php echo number_format($perongkir['tarif'])?>
-                        </option>
-                        <?php } ?>
-                    </select>
-                </div>
             </div>
             <div class="form-group">
                 <label>Alamat Lengkap Pengiriman</label>
                 <textarea class="form-control" name="alamat_pengiriman"
                     placeholder="Masukkan Alamat Lengkap"></textarea>
             </div>
-            <button name="checkout" class="btn" style="background-color: #f33f3f; color:white;">Checkout</button>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Provinsi</label>
+                        <select class="form-control" name="nama_provinsi">
+                            
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Kota/Kabupaten</label>
+                        <select class="form-control" name="nama_kota">
+                            
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Ekspedisi</label>
+                        <select class="form-control" name="nama_ekspedisi"> 
+                            
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Paket</label>
+                        <select class="form-control" name="nama_paket"> 
+                            
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <input type="text" name="total_berat" value="<?php echo $totalberat; ?>">
+            <input type="text" name="provinsi">
+            <input type="text" name="kota">
+            <input type="text" name="tipe">
+            <input type="text" name="kodepos">
+            <input type="text" name="ekspedisi">
+            <input type="text" name="paket">
+            <input type="text" name="ongkir">
+            <input type="text" name="estimasi">
+
+            <button name="checkout" class="btn" style="background-color: #f33f3f; color:white;">Checkout
+        </button>
         </form>
         <?php  
             if (isset ($_POST["checkout"]))
             {
                 $id_pelanggan = $_SESSION["pelanggan"]["id_pelanggan"];
-                $id_ongkir = $_POST["id_ongkir"];
                 $tanggal_pembelian = date("Y-m-d");
                 $alamat_pengiriman = $_POST['alamat_pengiriman'];
+                $totalberat = $_POST["total_berat"];
+                $provinsi = $_POST["provinsi"];
+                $kota = $_POST["kota"];
+                $tipe = $_POST["tipe"];
+                $kodepos = $_POST["kodepos"];
+                $ekspedisi = $_POST["ekspedisi"];
+                $paket = $_POST["paket"];
+                $ongkir = $_POST["ongkir"];
+                $estimasi = $_POST["estimasi"];
 
-                $ambil = $koneksi -> query("SELECT * FROM ongkir WHERE id_ongkir='$id_ongkir'");
-                $arrayongkir = $ambil-> fetch_assoc();
-                $nama_kota = $arrayongkir['nama_kota'];
-                $tarif = $arrayongkir ['tarif'];
-                $total_pembelian = $totalbelanja + $tarif;
-
+                $total_pembelian = $totalbelanja + $ongkir;
                 // menyimpan data ke tabel pembelian
-                $koneksi->query("INSERT INTO pembelian (id_pelanggan,id_ongkir,tanggal_pembelian,total_pembelian,nama_kota,tarif,alamat_pengiriman) VALUES ('$id_pelanggan','$id_ongkir','$tanggal_pembelian','$total_pembelian','$nama_kota','$tarif','$alamat_pengiriman')");
+               $koneksi->query("INSERT INTO pembelian 
+               (id_pelanggan,tanggal_pembelian,total_pembelian,alamat_pengiriman,totalberat,provinsi,kota,tipe,kodepos,ekspedisi,paket,ongkir,
+               estimasi) 
+               VALUES ('$id_pelanggan','$tanggal_pembelian','$total_pembelian','$alamat_pengiriman','$totalberat','$provinsi','$kota','$tipe','$kodepos','$ekspedisi','$paket','$ongkir','$estimasi')");
+                
+                
                 //menadapatkan id_pembelian baru
                $id_pembelian_barusan = $koneksi->insert_id;
-               foreach ($_SESSION["keranjang"] as $id_produk => $jumlah) {
+
+               foreach ($_SESSION["keranjang"] as $id_produk => $jumlah) 
+               {
                    //mendapatkan data produk berdasarkan id_produk
                 $ambil = $koneksi -> query("SELECT * FROM produk WHERE id_produk='$id_produk'");
                 $perproduk = $ambil -> fetch_assoc();
+
                 $nama = $perproduk['nama_produk'];
                 $harga = $perproduk['harga_produk'];
                 $berat = $perproduk['berat_produk'];
+
                 $subberat = $perproduk['berat_produk']*$jumlah;
                 $subharga = $perproduk['harga_produk']*$jumlah;
                    $koneksi -> query("INSERT INTO pembelian_produk (id_pembelian,id_produk,nama,harga,berat,subberat,subharga,jumlah) VALUES ('$id_pembelian_barusan','$id_produk','$nama','$harga','$berat','$subberat','$subharga','$jumlah')");
+
+                // skrip update stok
+                $koneksi->query("UPDATE produk SET stok_produk=stok_produk -$jumlah
+                    WHERE id_produk='$id_produk'");
                }
                //mengkosongkan keranjang belanja
                unset ($_SESSION["keranjang"]);
@@ -239,7 +298,33 @@ if(empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"]))
             ?>
         </div>
     </section>
+    
+    <footer class="pt-4 pb-4 text-center bg-light">
+        <div class="container">
+            <div class="my-3">
+                <div style="font-family: 'Nunito', sans-serif;font-size:27px;font-weight:800;color:#3f5a5e;">LEPAS HIJAB
+                </div>
+                <p>Belanja & retail</p>
+                <div class="social-nav">
+                    <nav role="navigation">
+                        <ul class="nav justify-content-center">
 
+                            <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/lepashijab"
+                                    title="Instagram"><i class="fab fa-instagram fa-2x"></i><span
+                                        class="menu-title sr-only">Instagram</span></a></li>
+                            <li class="nav-item"><a class="nav-link" href="https://www.linkedin.com/"
+                                    title="LinkedIn"><i class="fab fa-whatsapp fa-2x"></i><span
+                                        class="menu-title sr-only">LinkedIn</span></a></li>
+                            <li class="nav-item"><a class="nav-link" href="https://www.linkedin.com/"
+                                    title="LinkedIn"><i class="fas fa-store fa-2x"></i><span
+                                        class="menu-title sr-only">LinkedIn</span></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="text-small text-secondary">
+                <div class="mb-1">&copy; All rights reserved.</div>
+    </footer>
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -264,7 +349,85 @@ if(empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"]))
         }
     }
     </script>
-
 </body>
-
 </html>
+
+<script>
+        $(document).ready(function(){
+            $.ajax({ 
+                type:'post',
+                url:'dataprovinsi.php',
+                success:function(hasil_provinsi)
+                {
+                    $("select[name=nama_provinsi]").html(hasil_provinsi);
+                }
+            });
+
+            $("select[name=nama_provinsi]").on("change",function(){
+                //ambil id_provinsi yang dipilih
+                var id_provinsi_terpilih = $("option:selected",this).attr("id_provinsi");
+                $.ajax({
+                    type:'post',
+                    url:'datakota.php',
+                    data:'id_provinsi='+id_provinsi_terpilih,
+                    success:function(hasil_kota)
+                    {
+                        $("select[name=nama_kota]").html(hasil_kota);
+                    }
+                });
+            });
+
+            $.ajax({ 
+                type:'post',
+                url:'dataekspedisi.php',
+                success:function(hasil_ekspedisi)
+                {
+                    $("select[name=nama_ekspedisi]").html(hasil_ekspedisi);
+                }
+            });
+
+            $("select[name=nama_ekspedisi]").on("change",function(){
+                //mendapatkan data ongkos kirim
+
+                //mendapatkan ekspedisi yang dipilih
+                var ekspedisi_terpilih = $("select[name=nama_ekspedisi]").val();
+                //mendapatkan id_kota yang dipilih customer
+                var kota_terpilih = $("option:selected","select[name=nama_kota]").attr("id_kota");
+                //mendapatkan total_berat dari inputan
+                var total_berat = $("input[name=total_berat]").val();
+                $.ajax({    
+                    type:'post',
+                    url:'datapaket.php',
+                    data:'ekspedisi='+ekspedisi_terpilih+'&kota='+kota_terpilih+'&berat='+total_berat,
+                    success:function(hasil_paket)
+                    {
+                        // console.log(hasil_paket);
+                        $("select[name=nama_paket]").html(hasil_paket);
+
+                        //letakkan nama ekspedisi terpilih di input ekspedisi
+                        $("input[name=ekspedisi]").val(ekspedisi_terpilih);
+                    }
+                })
+            }); 
+            $("select[name=nama_kota]").on("change",function(){
+                var prov = $("option:selected",this).attr("nama_provinsi");
+                var kota = $("option:selected",this).attr("nama_kota");
+                var tipe = $("option:selected",this).attr("tipe_kota");
+                var kodepos = $("option:selected",this).attr("kodepos");
+
+                $("input[name=provinsi]").val(prov);
+                $("input[name=kota]").val(kota);
+                $("input[name=tipe]").val(tipe);
+                $("input[name=kodepos]").val(kodepos);
+            });
+
+            $("select[name=nama_paket]").on("change",function(){
+                var paket = $("option:selected",this).attr("paket");
+                var ongkir = $("option:selected",this).attr("ongkir");
+                var etd = $("option:selected",this).attr("etd");
+                $("input[name=paket]").val(paket);
+                $("input[name=ongkir]").val(ongkir);
+                $("input[name=estimasi]").val(etd);
+            })
+        });
+</script>

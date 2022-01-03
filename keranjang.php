@@ -67,17 +67,20 @@ if(empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"]))
                                 <span class="sr-only">(current)</span>
                             </a>
                         </li>
-                        <li class="nav-item active">
+                        <li class="nav-item">
                             <a class="nav-link" href="produk.php">Produk</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="keranjang.php">Keranjang</a>
+                            <a class="nav-link active" href="keranjang.php">Keranjang</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="checkout.php">Checkout</a>
                         </li>
                         <!-- Jika sudah login -->
                         <?php if (isset ($_SESSION["pelanggan"])): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="riwayat.php">Riwayat Belanja</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="logout.php">Logout</a>
                         </li>
@@ -87,11 +90,14 @@ if(empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"]))
                             <a class="nav-link" href="login.php">Login</a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link" href="daftar.php">Daftar</a>
-                    </li>
+                            <a class="nav-link" href="daftar.php">Daftar</a>
+                        </li>
                         <?php endif ?>
-
                     </ul>
+                    <form action="pencarian.php" method="get" class="navbar-form navbar-right">
+                        <input type="text" class="form-control" name="keyword">
+                        <button class="btn btn-primary">Cari</button>
+                    </form>
                 </div>
             </div>
         </nav>
@@ -102,8 +108,7 @@ if(empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"]))
             <div class="row">
                 <div class="col-md-12">
                     <div class="text-content">
-                        <h4>new arrivals</h4>
-                        <h2 style="font-size: 30px;">Lepas Hijab produk</h2>
+                        <h2 style="font-size: 30px;">Lepas Hijab Store</h2>
                     </div>
                 </div>
             </div>
@@ -153,8 +158,34 @@ if(empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"]))
             <a href="produk.php" class="btn btn-primary">Lanjutkan Belanja</a>
             <a href="checkout.php" class="btn" style="background-color: #f33f3f; color:white;">checkout</a>
         </div>
-
     </section>
+
+    <footer class="pt-4 pb-4 text-center bg-light">
+        <div class="container">
+            <div class="my-3">
+                <div style="font-family: 'Nunito', sans-serif;font-size:27px;font-weight:800;color:#3f5a5e;">LEPAS HIJAB
+                </div>
+                <p>Belanja & retail</p>
+                <div class="social-nav">
+                    <nav role="navigation">
+                        <ul class="nav justify-content-center">
+
+                            <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/lepashijab"
+                                    title="Instagram"><i class="fab fa-instagram fa-2x"></i><span
+                                        class="menu-title sr-only">Instagram</span></a></li>
+                            <li class="nav-item"><a class="nav-link" href="https://www.linkedin.com/"
+                                    title="LinkedIn"><i class="fab fa-whatsapp fa-2x"></i><span
+                                        class="menu-title sr-only">LinkedIn</span></a></li>
+                            <li class="nav-item"><a class="nav-link" href="https://www.linkedin.com/"
+                                    title="LinkedIn"><i class="fas fa-store fa-2x"></i><span
+                                        class="menu-title sr-only">LinkedIn</span></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="text-small text-secondary">
+                <div class="mb-1">&copy; All rights reserved.</div>
+    </footer>
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

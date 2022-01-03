@@ -72,6 +72,9 @@ include 'config.php';
                     <!-- Jika sudah login -->
                     <?php if (isset ($_SESSION["pelanggan"])): ?>
                     <li class="nav-item">
+                        <a class="nav-link" href="riwayat.php">Riwayat Belanja</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="logout.php">Logout</a>
                     </li>
                     <!--jika belum login -->
@@ -83,8 +86,11 @@ include 'config.php';
                         <a class="nav-link" href="login.php">Daftar</a>
                     </li>
                     <?php endif ?>
-
                 </ul>
+                    <form action="pencarian.php" method="get" class="navbar-form navbar-right">
+                        <input type="text" class="form-control" name="keyword">
+                        <button class="btn btn-primary">Cari</button>
+                    </form>
             </div>
         </div>
     </nav>
