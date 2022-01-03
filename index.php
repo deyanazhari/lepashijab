@@ -170,7 +170,7 @@ $koneksi = new mysqli ("localhost","root","","lepashijab");
                     <div class="left-content">
                         <h4 style="color:#3f5a5e;">Apa itu Lepas Hijab?</h4>
                         <p><a rel="nofollow" href="https://templatemo.com/tm-546-sixteen-clothing"
-                                target="_parent">Lepas Hijab </a>merupakan salahsatu brand yang memperkuat
+                                target="_parent">Lepas Hijab </a>merupakan salah satu brand yang memperkuat
                             fashion hijab
                             Tanah Air sejak tahun 2020. Lepas Hijab hadir dengan koleksi bergaris feminin yang
                             mengusung
@@ -178,16 +178,15 @@ $koneksi = new mysqli ("localhost","root","","lepashijab");
                             gaya muda
                             ceria, klasik maupun eksklusif, dan selalu tampil beda di setiap kesempatan, akan
                             semakin
-                            percaya diri dengan koleksi Lepas Hijab.<a rel="nofollow"
-                                href="https://templatemo.com/contact">Contact us</a> for more info.</p>
+                            percaya diri dengan koleksi Lepas Hijab.</p>
                         <ul class="featured-list">
-                            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
-                            <li><a href="#">Consectetur an adipisicing elit</a></li>
-                            <li><a href="#">It aquecorporis nulla aspernatur</a></li>
-                            <li><a href="#">Corporis, omnis doloremque</a></li>
-                            <li><a href="#">Non cum id reprehenderit</a></li>
+                            <li><a href="#">Tidak ada garis tengah</a></li>
+                            <li><a href="#">Full Plisket</a></li>
+                            <li><a href="#">Bahan kualitas terbaik</a></li>
+                            <li><a href="#">Finishing jahit tepi rapih</a></li>
+                            <li><a href="#">Motif printing detail premium</a></li>
                         </ul>
-                        <a href="about.html" class="filled-button" style="background-color: #f33f3f;">Read More</a>
+
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -212,9 +211,9 @@ $koneksi = new mysqli ("localhost","root","","lepashijab");
                             <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/lepashijab"
                                     title="Instagram"><i class="fab fa-instagram fa-2x"></i><span
                                         class="menu-title sr-only">Instagram</span></a></li>
-                            <li class="nav-item"><a class="nav-link" href="https://www.linkedin.com/"
-                                    title="LinkedIn"><i class="fab fa-whatsapp fa-2x"></i><span
-                                        class="menu-title sr-only">LinkedIn</span></a></li>
+                            <li class="nav-item"><a class="nav-link" href="https://wa.me/6285929925995"
+                                    title="Whatsapp"><i class="fab fa-whatsapp fa-2x"></i><span
+                                        class="menu-title sr-only">Whatsapp</span></a></li>
                             <li class="nav-item"><a class="nav-link" href="https://www.linkedin.com/"
                                     title="LinkedIn"><i class="fas fa-store fa-2x"></i><span
                                         class="menu-title sr-only">LinkedIn</span></a></li>
