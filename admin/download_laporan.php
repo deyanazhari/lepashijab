@@ -35,7 +35,7 @@ $isi.= "<table class='table table-bordered' border='1px'>";
             <th>Status</th>
         </tr>";
     $isi.= "</thead>";
-    $isi.- "<tbody>";
+    $isi.= "<tbody>";
     $total=0;
     foreach ($semuadata as $key => $value):
         $total+=$value['total_pembelian'];
